@@ -11,7 +11,7 @@
 /**
  * @brief SMS_UserInfo 用户信息
  */
-@interface SMS_UserInfo : NSObject
+@interface SMSSDKUserInfo : NSObject
 
 /**
  * @brief 用户头像地址

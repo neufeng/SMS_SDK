@@ -11,7 +11,7 @@
 /**
  * @brief SMS_AddressBook类 为通讯录信息
  */
-@interface SMS_AddressBook : NSObject
+@interface SMSSDKAddressBook : NSObject
 
 /**
  * @brief 姓名

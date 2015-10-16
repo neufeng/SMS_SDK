@@ -11,7 +11,7 @@
 /**
  * @brief 国家名称和国家码类
  */
-@interface CountryAndAreaCode : NSObject
+@interface SMSSDKCountryAndAreaCode : NSObject
 
 /**
  * @brief 国家中文名称
