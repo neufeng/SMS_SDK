@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
     s.platform            = :ios, '7.0'
     s.frameworks          = "MessageUI", "AddressBook", "AddressBookUI", "javascriptcore"
     s.libraries           = "icucore", "z", "stdc++"
-    s.vendored_frameworks = 'SMS_SDK/SMS_SDK.framework'
+    s.vendored_frameworks = 'SMS_SDK/SMS_SDK.framework', 'SMS_SDK/MOBFoundation.framework'
     s.resources           = 'SMS_SDK/en.lproj', 'SMS_SDK/zh-Hans.lproj'
 end
