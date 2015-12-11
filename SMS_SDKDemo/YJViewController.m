@@ -98,6 +98,7 @@ static UIAlertView* _alert1 = nil;
         if (SMSResponseStateSuccess == state)
         {
             int count = latelyFriendsCount;
+            
             [testView setNumber:count];
         }
     };
@@ -107,9 +108,11 @@ static UIAlertView* _alert1 = nil;
 
 - (void)submitUserInfo:(id)sender
 {
-    SMSSDKUserInfo *userInfo = [[SMSSDKUserInfo alloc] init];
-    userInfo.nickname = @"David";
-    userInfo.avatar = @"";
+    SMSSDKUserInfo* userInfo=[[SMSSDKUserInfo alloc] init];
+    userInfo.avatar = @"http://123.jpg";
+    userInfo.nickname = @"Jimmy";
+    userInfo.uid = @"010";
+    //    user.phone = @"1861
     
     //最新方法
     [SMSSDK submitUserInfoHandler:userInfo result:^(NSError *error) {
@@ -179,7 +182,6 @@ static UIAlertView* _alert1 = nil;
             [self presentViewController:_friendsController animated:YES completion:^{
                 ;
             }];
-            
         }
         
     }];
@@ -190,7 +192,7 @@ static UIAlertView* _alert1 = nil;
         [_alert1 show];
     }
     
-    if(ABAddressBookGetAuthorizationStatus() != kABAuthorizationStatusAuthorized && _alert1==nil)
+    if(ABAddressBookGetAuthorizationStatus() != kABAuthorizationStatusAuthorized && _alert1 == nil)
     {
         NSString* str = [NSString stringWithFormat:NSLocalizedString(@"authorizedcontact", nil)];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"notice", nil)

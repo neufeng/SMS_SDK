@@ -184,7 +184,7 @@
         SMSSDKAddressBook* person1 = [_addressBookData objectAtIndex:i];
         NSString* str1 = [NSString stringWithFormat:@"%@+%@",person1.name,person1.phones];
         NSString* str2 = [str1 stringByAppendingString:@"#"];
-        NSLog(@"%@",str2);
+//        NSLog(@"%@",str2);
         [_other addObject:str2];
     }
     

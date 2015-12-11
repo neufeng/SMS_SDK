@@ -13,6 +13,7 @@
 #import <SMS_SDK/SMSSDKCountryAndAreaCode.h>
 #import <SMS_SDK/SMSSDK+DeprecatedMethods.h>
 #import <SMS_SDK/SMSSDK+ExtexdMethods.h>
+#import <MOBFoundation/MOBFoundation.h>
 
 @interface RegViewController ()
 {
@@ -85,10 +86,10 @@
             {
                 //手机号码不正确
                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"notice", nil)
-                                                              message:NSLocalizedString(@"errorphonenumber", nil)
-                                                             delegate:self
-                                                    cancelButtonTitle:NSLocalizedString(@"sure", nil)
-                                                    otherButtonTitles:nil, nil];
+                                                                message:NSLocalizedString(@"errorphonenumber", nil)
+                                                               delegate:self
+                                                      cancelButtonTitle:NSLocalizedString(@"sure", nil)
+                                                      otherButtonTitles:nil, nil];
                 [alert show];
                 return;
             }
@@ -102,10 +103,10 @@
         {
             //手机号码不正确
             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"notice", nil)
-                                                          message:NSLocalizedString(@"errorphonenumber", nil)
-                                                         delegate:self
-                                                cancelButtonTitle:NSLocalizedString(@"sure", nil)
-                                                otherButtonTitles:nil, nil];
+                                                            message:NSLocalizedString(@"errorphonenumber", nil)
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"sure", nil)
+                                                  otherButtonTitles:nil, nil];
             [alert show];
             return;
         }
@@ -114,9 +115,9 @@
     NSString* str = [NSString stringWithFormat:@"%@:%@ %@",NSLocalizedString(@"willsendthecodeto", nil),self.areaCodeField.text,self.telField.text];
     _str = [NSString stringWithFormat:@"%@",self.telField.text];
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"surephonenumber", nil)
-                                                  message:str delegate:self
-                                        cancelButtonTitle:NSLocalizedString(@"cancel", nil)
-                                        otherButtonTitles:NSLocalizedString(@"sure", nil), nil];
+                                                    message:str delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"cancel", nil)
+                                          otherButtonTitles:NSLocalizedString(@"sure", nil), nil];
     [alert show];
 }
 
@@ -129,29 +130,29 @@
         [verify setPhone:self.telField.text AndAreaCode:str2];
         
         [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:self.telField.text
-                                                                       zone:str2
-                                                           customIdentifier:nil
-                                                                     result:^(NSError *error)
-        {
-            
-            if (!error)
-            {
-                NSLog(@"验证码发送成功");
-                [self presentViewController:verify animated:YES completion:^{
-                    ;
-                }];
-            }
-            else
-            {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"codesenderrtitle", nil)
-                                                                message:[NSString stringWithFormat:@"错误描述：%@",[error.userInfo objectForKey:@"getVerificationCode"]]
-                                                               delegate:self
-                                                      cancelButtonTitle:NSLocalizedString(@"sure", nil)
-                                                      otherButtonTitles:nil, nil];
-                [alert show];
-            }
-            
-        }];
+                                       zone:str2
+                           customIdentifier:nil
+                                     result:^(NSError *error)
+         {
+             
+             if (!error)
+             {
+                 NSLog(@"验证码发送成功");
+                 [self presentViewController:verify animated:YES completion:^{
+                     ;
+                 }];
+             }
+             else
+             {
+                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"codesenderrtitle", nil)
+                                                                 message:[NSString stringWithFormat:@"错误描述：%@",[error.userInfo objectForKey:@"getVerificationCode"]]
+                                                                delegate:self
+                                                       cancelButtonTitle:NSLocalizedString(@"sure", nil)
+                                                       otherButtonTitles:nil, nil];
+                 [alert show];
+             }
+             
+         }];
         
     }
 }
@@ -173,7 +174,7 @@
     }
     
     //创建一个导航栏
-    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0+statusBarHeight, self.view.frame.size.width, 44)];
+    UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0 + statusBarHeight, self.view.frame.size.width, 44)];
     UINavigationItem *navigationItem = [[UINavigationItem alloc] initWithTitle:@""];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"back", nil)
                                                                    style:UIBarButtonItemStyleBordered
@@ -239,26 +240,71 @@
     
     //设置本地区号
     [self setTheLocalAreaCode];
-    //获取支持的地区列表
-    [SMSSDK getCountryZone:^(NSError *error, NSArray *zonesArray) {
-        
-        if (!error) {
-            
-            NSLog(@"get the area code sucessfully");
-            //区号数据
-            _areaArray = [NSMutableArray arrayWithArray:zonesArray];
-//            NSLog(@"_areaArray_%@",_areaArray);
-            
-        }
-        else
-        {
-        
-            NSLog(@"failed to get the area code _%@",[error.userInfo objectForKey:@"getZone"]);
-            
-        }
-        
-    }];
+    
+    NSString *saveTimeString = [[NSUserDefaults standardUserDefaults] objectForKey:@"saveDate"];
 
+    NSDateComponents *dateComponents = nil;
+    
+    if (saveTimeString.length != 0) {
+        
+       dateComponents = [self compareTwoDays:saveTimeString];
+        
+    }
+    
+    if (dateComponents.day >= 1 || saveTimeString.length == 0) { //day = 0 ,代表今天，day = 1  代表昨天  day >= 1 表示至少过了一天  saveTimeString.length == 0表示从未进行过缓存
+        
+        //获取支持的地区列表
+        [SMSSDK getCountryZone:^(NSError *error, NSArray *zonesArray) {
+            
+            if (!error) {
+                
+                NSLog(@"get the area code sucessfully");
+                //区号数据
+                _areaArray = [NSMutableArray arrayWithArray:zonesArray];
+                //获取到国家列表数据后对进行缓存
+                [[MOBFDataService sharedInstance] setCacheData:_areaArray forKey:@"countryCodeArray" domain:nil];
+                //设置缓存时间
+                NSDate *saveDate = [NSDate date];
+                [[NSUserDefaults standardUserDefaults] setObject:[MOBFDate stringByDate:saveDate withFormat:@"yyyy-MM-dd"] forKey:@"saveDate"];
+                
+                NSLog(@"_areaArray_%@",_areaArray);
+            }
+            else
+            {
+                NSLog(@"failed to get the area code _%@",[error.userInfo objectForKey:@"getZone"]);
+            }
+        }];
+    }
+    else
+    {
+        _areaArray = [[MOBFDataService sharedInstance] cacheDataForKey:@"countryCodeArray" domain:nil];
+        
+    }
+    
+}
+
+
+/**
+ *  计算两个日期的天数差
+ *
+ *  @param dateString 待计算日期
+ *
+ *  @return 返回NSDateComponents,通过属性day,可以判断待计算日期和当前日期的天数差
+ */
+- (NSDateComponents*)compareTwoDays:(NSString *)dateString
+{
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [gregorian setFirstWeekday:2];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *fromDate;
+    NSDate *toDate;
+    [gregorian rangeOfUnit:NSCalendarUnitDay startDate:&fromDate interval:NULL forDate:[dateFormatter dateFromString:dateString]];
+    [gregorian rangeOfUnit:NSCalendarUnitDay startDate:&toDate interval:NULL forDate:[NSDate date]];
+    NSDateComponents *dayComponents = [gregorian components:NSCalendarUnitDay | NSWeekdayCalendarUnit fromDate:fromDate toDate:toDate options:0];
+    
+    return dayComponents;
 }
 
 -(void)setTheLocalAreaCode
@@ -377,6 +423,7 @@
 {
     SectionsViewController* country2 = [[SectionsViewController alloc] init];
     country2.delegate = self;
+
     [country2 setAreaArray:_areaArray];
     [self presentViewController:country2 animated:YES completion:^{
         ;

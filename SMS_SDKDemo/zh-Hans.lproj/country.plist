@@ -14,13 +14,11 @@
 		<string>安提瓜和巴布达+1268</string>
 		<string>阿根廷+54</string>
 		<string>亚美尼亚+374</string>
-		<string>阿森松+247</string>
 		<string>澳大利亚+61</string>
 		<string>奥地利+43</string>
 		<string>阿塞拜疆+994</string>
 		<string>埃及+20</string>
 		<string>爱沙尼亚+372</string>
-		<string>埃塞俄比亚+251</string>
 		<string>爱尔兰+353</string>
 		<string>澳门+853</string>
 		<string>阿曼+968</string>
@@ -56,7 +54,6 @@
 	</array>
 	<key>C</key>
 	<array>
-		<string>朝鲜+850</string>
 		<string>赤道几内亚+240</string>
 	</array>
 	<key>D</key>
@@ -66,7 +63,6 @@
 		<string>多米尼加+1767</string>
 		<string>德国+49</string>
 		<string>东帝汶+670</string>
-		<string>东萨摩亚(美)+684</string>
 		<string>多哥+228</string>
 	</array>
 	<key>E</key>
@@ -164,7 +160,6 @@
 		<string>马约特岛+269</string>
 		<string>马里+223</string>
 		<string>马耳他+356</string>
-		<string>马里亚那群岛+1670</string>
 		<string>马提尼克+596</string>
 		<string>毛里塔尼亚+222</string>
 		<string>毛里求斯+230</string>
@@ -184,7 +179,6 @@
 	<key>N</key>
 	<array>
 		<string>纳米比亚+264</string>
-		<string>瑙鲁+674</string>
 		<string>尼泊尔+977</string>
 		<string>尼加拉瓜+505</string>
 		<string>尼日尔+227</string>
@@ -214,7 +208,6 @@
 		<string>萨尔瓦多+503</string>
 		<string>圣卢西亚+1758</string>
 		<string>圣文森特和格林纳丁斯+1784</string>
-		<string>圣马力诺+378</string>
 		<string>圣多美和普林西比+239</string>
 		<string>圣基茨和尼维斯+1869</string>
 		<string>沙特阿拉伯+966</string>

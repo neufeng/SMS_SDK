@@ -72,8 +72,8 @@ enum SMSResponseState
 
 typedef enum SMSGetCodeMethod
 {
-    SMSGetCodeMethodSMS = 0,
-    SMSGetCodeMethodVoice = 1
+    SMSGetCodeMethodSMS = 0,  //文本短信方式
+    SMSGetCodeMethodVoice = 1 //语音方式
     
 } SMSGetCodeMethod;
 
@@ -148,4 +148,6 @@ typedef void (^SMSSubmitUserInfoBlock) (enum SMSResponseState state);
  * @param 代表最近新好友条数
  */
 typedef void (^SMSShowNewFriendsCountBlock)(enum SMSResponseState state,int latelyFriendsCount);
+
+
 

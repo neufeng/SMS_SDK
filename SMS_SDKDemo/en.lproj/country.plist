@@ -14,7 +14,6 @@
 		<string>Antigua and Barbuda+1268</string>
 		<string>Argentina+54</string>
 		<string>Armenia+374</string>
-		<string>Ascension+247</string>
 		<string>Australia+61</string>
 		<string>Austria+43</string>
 		<string>Azerbaijan+994</string>
@@ -71,7 +70,6 @@
 	</array>
 	<key>E</key>
 	<array>
-		<string>Ethiopia+251</string>
 		<string>Estonia+372</string>
 		<string>East Timor+670</string>
 		<string>Egypt+20</string>
@@ -166,7 +164,6 @@
 		<string>Mauritania+222</string>
 		<string>Mali+223</string>
 		<string>Malta+356</string>
-		<string>Mariana Is+1670</string>
 		<string>Martinique+596</string>
 		<string>Mauritius+230</string>
 		<string>Mexico+52</string>
@@ -182,9 +179,7 @@
 	<array>
 		<string>Netherlands+31</string>
 		<string>Netheriands Antilles+599</string>
-		<string>North Korea+850</string>
 		<string>Namibia+264</string>
-		<string>Nauru+674</string>
 		<string>Nepal+977</string>
 		<string>Nicaragua+505</string>
 		<string>Niger+227</string>
@@ -225,14 +220,12 @@
 	</array>
 	<key>S</key>
 	<array>
-		<string>Samoa Eastern+684</string>
 		<string>Sweden+46</string>
 		<string>Switzerland+41</string>
 		<string>South Africa+27</string>
 		<string>Salvador+503</string>
 		<string>Saint Lucia+1758</string>
 		<string>Saint Vincent and The Grenadines+1784</string>
-		<string>San Marino+378</string>
 		<string>Sao Tome and Principe+239</string>
 		<string>Saint Kitts and Nevis+1869</string>
 		<string>Serbia+381</string>
